@@ -70,16 +70,18 @@ void send_notification(const std::string& owner, const std::string& message, con
   
 #ifdef HAVE_NS_USER_NOTIFICATION
 void send_cocoa_notification(const std::string& owner, const std::string& message) {
+#if TARGET_OS_IPHONE
+#else
     NSString *title = [NSString stringWithCString:owner.c_str() encoding:NSUTF8StringEncoding];
     NSString *description = [NSString stringWithCString:message.c_str() encoding:NSUTF8StringEncoding];
-    // TODO: fixme
-    /*
+    
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = title;
     notification.informativeText = description;
     notification.deliveryDate = [NSDate date];
     
-    [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];*/
+    [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];
+#endif // TARGET_OS_IPHONE
 }
 #endif //end HAVE_NS_USER_NOTIFICATION
 
