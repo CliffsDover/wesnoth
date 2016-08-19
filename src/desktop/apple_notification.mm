@@ -72,12 +72,14 @@ void send_notification(const std::string& owner, const std::string& message, con
 void send_cocoa_notification(const std::string& owner, const std::string& message) {
     NSString *title = [NSString stringWithCString:owner.c_str() encoding:NSUTF8StringEncoding];
     NSString *description = [NSString stringWithCString:message.c_str() encoding:NSUTF8StringEncoding];
+    // TODO: fixme
+    /*
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = title;
     notification.informativeText = description;
     notification.deliveryDate = [NSDate date];
     
-    [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];
+    [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];*/
 }
 #endif //end HAVE_NS_USER_NOTIFICATION
 
