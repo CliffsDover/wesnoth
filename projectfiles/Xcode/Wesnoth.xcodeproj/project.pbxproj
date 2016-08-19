@@ -5925,6 +5925,14 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				PRODUCT_NAME = wesnothd;
+				WARNING_CFLAGS = (
+					"-Werror=format",
+					"-Werror=return-type",
+					"-Werror=missing-field-initializers",
+					"-Werror=sign-compare",
+					"-Werror=unused",
+					"-Werror=switch",
+				);
 			};
 			name = Debug;
 		};
@@ -5944,6 +5952,14 @@
 				);
 				PRODUCT_NAME = wesnothd;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Werror=format",
+					"-Werror=return-type",
+					"-Werror=missing-field-initializers",
+					"-Werror=sign-compare",
+					"-Werror=unused",
+					"-Werror=switch",
+				);
 			};
 			name = Release;
 		};
@@ -5974,6 +5990,14 @@
 					"-lreadline",
 				);
 				PRODUCT_NAME = Wesnoth;
+				WARNING_CFLAGS = (
+					"-Werror=format",
+					"-Werror=return-type",
+					"-Werror=missing-field-initializers",
+					"-Werror=sign-compare",
+					"-Werror=unused",
+					"-Werror=switch",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -6005,6 +6029,14 @@
 				);
 				PRODUCT_NAME = Wesnoth;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = (
+					"-Werror=format",
+					"-Werror=return-type",
+					"-Werror=missing-field-initializers",
+					"-Werror=sign-compare",
+					"-Werror=unused",
+					"-Werror=switch",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
