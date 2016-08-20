@@ -24,8 +24,9 @@ class config;
 
 namespace gui2
 {
-	
+
 class ttree_view;
+class ttoggle_panel;
 class twidget;
 
 class tmp_create_game : public tdialog
@@ -67,12 +68,12 @@ private:
 	 * manually controlled as well so add the pointers here as well.
 	 */
 
-	tfield_bool* use_map_settings_, *fog_, *shroud_, *start_time_, *time_limit_;
+	tfield_bool* use_map_settings_, *fog_, *shroud_, *start_time_, *time_limit_, *shuffle_sides_, *observers_, *registered_users_, *strict_sync_;
 
 	tfield_integer* turns_, *gold_, *support_, *experience_, *init_turn_limit, *turn_bonus_, *reservior_, *action_bonus_;
 
 	template<typename widget>
-	void filter_changed_callback(twindow& window, const std::string& id);
+	void on_filter_change(twindow& window, const std::string& id);
 
 	void on_game_select(twindow& window);
 
@@ -82,10 +83,14 @@ private:
 	void on_era_select(twindow& window);
 
 	void on_mod_toggle(const int index, twidget&);
-	
+
 	void display_custom_options(ttree_view& options_tree, std::string&& type, const std::string& id, const config& data);
 
 	void update_options_list(twindow& window);
+
+	void dialog_exit_hook(twindow& window);
+
+	int convert_to_game_filtered_index(const int initial_index);
 
 public:
 	// another map selected

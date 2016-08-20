@@ -407,7 +407,8 @@ create_engine::create_engine(CVideo& v, saved_game& state) :
 	state_(state),
 	video_(v),
 	dependency_manager_(nullptr),
-	generator_(nullptr)
+	generator_(nullptr),
+	selected_campaign_difficulty_()
 {
 	DBG_MP << "restoring game config\n";
 
@@ -544,8 +545,10 @@ void create_engine::prepare_for_campaign(const std::string& difficulty)
 {
 	DBG_MP << "preparing data for campaign by reloading game config\n";
 
-	if (difficulty != "") {
+	if(difficulty != "") {
 		state_.classification().difficulty = difficulty;
+	} else if(!selected_campaign_difficulty_.empty()) {
+		state_.classification().difficulty = selected_campaign_difficulty_;
 	}
 
 	state_.classification().campaign = current_level().data()["id"].str();
@@ -619,7 +622,14 @@ std::string create_engine::select_campaign_difficulty(int set_value)
 	gui2::tcampaign_difficulty dlg(current_level().data());
 	dlg.show(video_);
 
-	return dlg.selected_difficulty();
+	selected_campaign_difficulty_ = dlg.selected_difficulty();
+
+	return selected_campaign_difficulty_;
+}
+
+std::string create_engine::get_selected_campaign_difficulty()
+{
+	return selected_campaign_difficulty_;
 }
 
 void create_engine::prepare_for_saved_game()
@@ -1269,6 +1279,26 @@ std::vector<create_engine::level_ptr> create_engine::get_levels_by_type(level::T
 	} // end switch
 
 	return levels;
+}
+
+std::vector<size_t> create_engine::get_filtered_level_indices(level::TYPE type) const
+{
+	switch (type.v) {
+	case level::TYPE::SCENARIO:
+		return scenarios_filtered_;
+	case level::TYPE::USER_MAP:
+		return user_maps_filtered_;
+	case level::TYPE::USER_SCENARIO:
+		return user_scenarios_filtered_;
+	case level::TYPE::RANDOM_MAP:
+		return random_maps_filtered_;
+	case level::TYPE::CAMPAIGN:
+		return campaigns_filtered_;
+	case level::TYPE::SP_CAMPAIGN:
+		return sp_campaigns_filtered_;
+	} // end switch
+
+	return std::vector<size_t>();
 }
 
 const std::vector<create_engine::extras_metadata_ptr>&
