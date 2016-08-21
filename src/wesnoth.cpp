@@ -949,10 +949,11 @@ static void restart_process(const std::vector<std::string>& commandline)
 	std::exit(EXIT_SUCCESS);
 }
 #endif
-
+# include <SDL_main.h>
 #if defined(__native_client__) || defined(__APPLE__)
-extern "C" int wesnoth_main(int argc, char** argv);
-int wesnoth_main(int argc, char** argv)
+//extern "C" int wesnoth_main(int argc, char** argv);
+//int wesnoth_main(int argc, char** argv)
+int main(int argc, char** argv)
 #else
 int main(int argc, char** argv)
 #endif

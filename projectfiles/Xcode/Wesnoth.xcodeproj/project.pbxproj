@@ -5995,7 +5995,6 @@
 					"-Werror=return-type",
 					"-Werror=missing-field-initializers",
 					"-Werror=sign-compare",
-					"-Werror=unused",
 					"-Werror=switch",
 				);
 				WRAPPER_EXTENSION = app;
@@ -6034,7 +6033,6 @@
 					"-Werror=return-type",
 					"-Werror=missing-field-initializers",
 					"-Werror=sign-compare",
-					"-Werror=unused",
 					"-Werror=switch",
 				);
 				WRAPPER_EXTENSION = app;
